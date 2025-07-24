@@ -34,8 +34,8 @@ docker-compose --version
 สมมติโฟลเดอร์โปรเจกต์ชื่อ `my-php-app`
 
 ```bash
-mkdir -p ~/my-php-app
-cd ~/my-php-app
+mkdir -p ~/forhostphp
+cd ~/forhostphp
 ```
 
 วางไฟล์ `docker-compose.yaml` และโฟลเดอร์ `php` ที่มีไฟล์ PHP และไฟล์ SQL สำหรับ initial database ไว้ที่นี่
