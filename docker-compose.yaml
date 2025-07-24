@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  db2:
+    image: bitnami/mariadb:latest
+    container_name: apex-db2
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpass
+      MARIADB_DATABASE: testdb
+      MARIADB_USER: testuser
+      MARIADB_PASSWORD: testpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mariadb_data:/bitnami/mariadb
+      - ./php:/docker-entrypoint-initdb.d   # ใช้โฟลเดอร์เดียวกับ PHP
+    user: root
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  phpmyadmin2:
+    image: phpmyadmin/phpmyadmin
+    container_name: apex-phpmyadmin-2
+    restart: always
+    environment:
+      PMA_HOST: db2
+      PMA_USER: testuser
+      PMA_PASSWORD: testpass
+    ports:
+      - "8080:80"
+    depends_on:
+      - db2
+    networks:
+      - app-network
+
+  php:
+    image: php:8.2-apache
+    container_name: php-app
+    ports:
+      - "80:80"
+    volumes:
+      - ./php:/var/www/html
+    depends_on:
+      - db2
+    networks:
+      - app-network
+    command: >
+      bash -c "docker-php-ext-install mysqli && apache2-foreground"
+
+networks:
+  app-network:
+    driver: bridge
