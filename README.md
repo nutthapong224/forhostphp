@@ -11,8 +11,11 @@
 ---
 
 ## ขั้นตอนติดตั้งและรันบน Ubuntu 24.04
-
-### 1. ติดตั้ง Docker และ Docker Compose (ถ้ายังไม่ได้ติดตั้ง)
+### 1. ssh เข้าไป ใน server ให้ ทำตัวเองอยู่ใน สิทธิ์ root แล้วกรอก password
+```bash
+sudo -i
+```
+### 2. ติดตั้ง Docker และ Docker Compose (ถ้ายังไม่ได้ติดตั้ง)
 
 ```bash
 # ติดตั้ง dependencies
@@ -38,36 +41,39 @@ sudo systemctl enable --now docker
 ตรวจสอบเวอร์ชัน Docker และ Compose:
 
 ```bash
-docker --version
-docker compose --version
+docker --v
+
 ```
 
 ---
 
-### 2. เตรียมโฟลเดอร์โปรเจกต์
+### 3. clone project ลงมา 
 
 สมมติโฟลเดอร์โปรเจกต์ชื่อ `my-php-app`
 
 ```bash
-mkdir -p ~/forhostphp
-cd ~/forhostphp
+git clone 
 ```
 
 วางไฟล์ `docker-compose.yaml` และโฟลเดอร์ `php` ที่มีไฟล์ PHP และไฟล์ SQL สำหรับ initial database ไว้ที่นี่
 
 ---
+### 4. เข้าไปยัง โปรเจค 
+```bash
+ cd forhostphp#
+```
 
-### 3. รัน Docker Compose
+### 5. รัน Docker Compose
 
 ```bash
-sudo docker compose up -d --build
+docker compose up -d --build
 ```
 
 คำสั่งนี้จะดาวน์โหลดอิมเมจที่จำเป็น สร้าง container และรันใน background
 
 ---
 
-### 4. ตรวจสอบสถานะ container
+### 6. ตรวจสอบสถานะ container
 
 ```bash
 sudo docker compose ps
@@ -79,7 +85,7 @@ sudo docker compose ps
 
 ---
 
-### 5. เข้าถึงบริการ
+### 7. เข้าถึงบริการ
 
 - เข้าหน้าเว็บ PHP ของคุณผ่าน:  
   http://localhost หรือ http://<your-server-ip>  
@@ -91,7 +97,7 @@ sudo docker compose ps
 
 ---
 
-### 6. การหยุดและลบ container
+### 8. การหยุดและลบ container
 
 ```bash
 sudo docker compose down
