@@ -60,7 +60,7 @@ git clone
 ---
 ### 4. เข้าไปยัง โปรเจค 
 ```bash
- cd forhostphp#
+ cd forhostphp
 ```
 
 ### 5. รัน Docker Compose
