@@ -52,7 +52,7 @@ docker --v
 สมมติโฟลเดอร์โปรเจกต์ชื่อ `my-php-app`
 
 ```bash
-git clone 
+git clone https://github.com/nutthapong224/forhostphp.git
 ```
 
 วางไฟล์ `docker-compose.yaml` และโฟลเดอร์ `php` ที่มีไฟล์ PHP และไฟล์ SQL สำหรับ initial database ไว้ที่นี่
