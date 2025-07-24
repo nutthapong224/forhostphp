@@ -42,16 +42,29 @@ services:
   php:
     image: php:8.2-apache
     container_name: php-app
-    ports:
+    expose:
       - "80:80"
     volumes:
       - ./php:/var/www/html
+      - ./php/uploads:/var/www/html/uploads   # แมปโฟลเดอร์ uploads
     depends_on:
       - db2
     networks:
       - app-network
     command: >
       bash -c "docker-php-ext-install mysqli && apache2-foreground"
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare-tunnel
+    restart: always
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=<YOUR_TUNNEL_TOKEN>
+    depends_on:
+      - php
+    networks:
+      - app-network
 
 networks:
   app-network:
