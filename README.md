@@ -45,7 +45,7 @@ cd ~/forhostphp
 ### 3. รัน Docker Compose
 
 ```bash
-sudo docker-compose up -d --build
+sudo docker compose up -d --build
 ```
 
 คำสั่งนี้จะดาวน์โหลดอิมเมจที่จำเป็น สร้าง container และรันใน background
