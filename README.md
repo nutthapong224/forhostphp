@@ -24,7 +24,7 @@ sudo systemctl enable --now docker
 
 ```bash
 docker --version
-docker-compose --version
+docker compose --version
 ```
 
 ---
@@ -45,7 +45,7 @@ cd ~/forhostphp
 ### 3. รัน Docker Compose
 
 ```bash
-sudo docker-compose up -d
+sudo docker-compose up -d --build
 ```
 
 คำสั่งนี้จะดาวน์โหลดอิมเมจที่จำเป็น สร้าง container และรันใน background
@@ -55,7 +55,7 @@ sudo docker-compose up -d
 ### 4. ตรวจสอบสถานะ container
 
 ```bash
-sudo docker-compose ps
+sudo docker compose ps
 ```
 
 - `apex-db2` (MariaDB) ควรอยู่ในสถานะ `healthy`  
@@ -79,7 +79,7 @@ sudo docker-compose ps
 ### 6. การหยุดและลบ container
 
 ```bash
-sudo docker-compose down
+sudo docker compose down
 ```
 
 ---
